@@ -134,10 +134,30 @@
 - resources 的資料夾與 Java 都會被包在 class 這個目錄底下
 - 被包在 class 底下的東西，才可以進行讀取、運行等
 
+## application.properties 相關設定
+- Exception : 本身在產生 exception 的時候，不會暴露在網頁上給使用者知道
+- 如果需要顯示，則到 application.properties 進行設定
+  ```
+  #秀出 error 的訊息
+  server.error.include-message=always
+  
+  #秀出 exception 的訊息
+  server.error.include-exception=true
+  
+  #秀出 stacktrace 的訊息
+  server.error.include-stacktrace=always
+  ```
+- application-prod.properties : 常用來表示正式環境才要運行的設定
+  - 可以到 Configurations 裡面的 Active profile 去做設定
+    - 輸入 `prod` 即可
+  - 在 terminal 輸入 mvn spring-boot:run -D"spring.profiles.active=prod"
+    - 在 window 寫指令的時候，有"."的時候，會導致指令被切斷，所以需要 " " 將指令框起來
+
 ## 額外補充說明
 - 在 Project 中的 Modules ，可以選擇 Language level，限制開發時，使用到多少版本以上的特性
 - console 印出 exit code 0
   - 表示正常被結束的，這個程式已經結束了
   - 如果是 web 的話，會需要一直監聽，有 request 則 response 回去
 - Maven Helper
+  - 在 setting -> Piugins 中，進行安裝
   - 安裝後 pom.xml 可以看到更內層的包裝 (dependency analyzer)
