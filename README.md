@@ -34,6 +34,7 @@
   - 在 Actions 中，搜尋 Reload All Maven Projects
   - 點選 pom.xml 右上角的圖示
   - 點選 右側 maven 中，最上排的第一個 reload 的按鈕
+- pom.xml 主要做三大事情 : `身分的描述`、`使用那些依賴`、`如何進行包版`
 - spring boot 版本
   ```xml
   <!-- 基於 Spring boot starter 建置的，Spring boot 的版本為 2.5.2，會控管 Spring boot 的版本 -->
@@ -53,19 +54,7 @@
   <name>spring-boot-demo</name>
   <description>Demo project for Spring Boot</description>
   ```
-- 添增 web 依賴
-  ```xml
-  <!-- 未使用 web 依賴 -->
-  <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter</artifactId>
-  </dependency>
-    <!-- 使用 web 依賴 -->
-  <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
-  </dependency>
-  ```
+
 - 依賴 (dependency)
   ```xml
   <!-- 這一個專案所使用的依賴，減少開發流程 -->
@@ -77,11 +66,35 @@
         <dependency>....</dependency>
 	</dependencies>
   ```
+  - 添增 web 依賴
+    ```xml
+    <!-- 未使用 web 依賴 -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter</artifactId>
+    </dependency>
+      <!-- 使用 web 依賴 -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    ```
 - 包版 (build)
+  ```xml
+  <!-- 專案建置所需要的資訊(要如何包版) -->
+  <build>
+      <plugins>
+          <plugin>
+              <groupId>org.springframework.boot</groupId>
+              <artifactId>spring-boot-maven-plugin</artifactId>
+          </plugin>
+      </plugins>
+  </build>
+  ```
 
 
 ## maven 主要資料夾結構
-- class pass 是從 包檔後，classes 底下算起的路徑，通常表示為根目錄
+- class path 是從 包檔後，classes 底下算起的路徑，通常表示為根目錄
 
 
 ## spring boot 包版
