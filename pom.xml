@@ -19,11 +19,28 @@
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
+	<!-- 管控依賴版本 -->
+<!--	<dependencyManagement>-->
+<!--		<dependencies>-->
+<!--			<dependency>-->
+<!--				<groupId>org.springframework.boot</groupId>-->
+<!--				<artifactId>spring-boot-starter-json</artifactId>-->
+<!--				<version>2.1.2.RELEASE</version>-->
+<!--			</dependency>-->
+<!--		</dependencies>-->
+<!--	</dependencyManagement>-->
 	<!-- 這一個專案所使用的依賴，減少開發流程 -->
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<!-- 移除依賴 -->
+<!--			<exclusions>-->
+<!--				<exclusion>-->
+<!--					<groupId>org.springframework.boot</groupId>-->
+<!--					<artifactId>spring-boot-starter-json</artifactId>-->
+<!--				</exclusion>-->
+<!--			</exclusions>-->
 		</dependency>
 
 		<dependency>

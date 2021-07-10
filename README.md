@@ -91,6 +91,37 @@
       </plugins>
   </build>
   ```
+---  
+- 移除依賴 (exclusion)
+  - 常用於處理共用模組中，版本不同的問題
+  - 在某個依賴底下，加上 exclusions，如移除 web 底下的 json
+  ```xml
+  <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+       <!-- 移除依賴 -->
+      <exclusions>
+          <exclusion>
+              <groupId>org.springframework.boot</groupId>
+              <artifactId>spring-boot-starter-json</artifactId>
+          </exclusion>
+      </exclusions>
+  </dependency>
+  ```
+- 依賴的版本管控
+  - 如要修改 web 裡面的 json 版本，則 : 
+  ```xml
+  <!-- 管控依賴版本 -->
+  <dependencyManagement>
+      <dependencies>
+          <dependency>
+              <groupId>org.springframework.boot</groupId>
+              <artifactId>spring-boot-starter-json</artifactId>
+              <version>2.1.2.RELEASE</version>
+          </dependency>
+      </dependencies>
+  </dependencyManagement>
+  ```
 
 
 ## maven 主要資料夾結構
@@ -107,4 +138,6 @@
 - 在 Project 中的 Modules ，可以選擇 Language level，限制開發時，使用到多少版本以上的特性
 - console 印出 exit code 0
   - 表示正常被結束的，這個程式已經結束了
-  - 如果是 web 的話，會需要一直監聽，有 request 則 repsonse 回去
+  - 如果是 web 的話，會需要一直監聽，有 request 則 response 回去
+- Maven Helper
+  - 安裝後 pom.xml 可以看到更內層的包裝 (dependency analyzer)
