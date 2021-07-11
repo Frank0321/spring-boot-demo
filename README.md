@@ -28,6 +28,8 @@
   - NetBeans
   - VS code 
   - 都屬於 ide 相關的設定檔，所以皆不需要 commit
+  - 未 commit 的檔案 : 藍色
+  - 未 加入 github 的檔案 : 紅色
   
 ## pom.xml 介紹
 - 如果對於 maven 的 pom.xml 進行改變，皆需要執行 reload !!! 執行方式
