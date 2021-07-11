@@ -21,12 +21,12 @@
 - HELP.md : spring initalizr 給予的說明，若使用其他 dependency 的話，會附上 documentation
 - .gitgnore : 當使用 git、github 的時候，需要忽略掉(如需要建置產生的東西)的檔案相關設定，主要內容如下 : 
   - HELP.md : 說明文件，不需要 commit
-  - target : maven 的主要結構，主要放置 Compile 的 Java 檔
+  - target : maven 的主要結構，主要放置 compile 的 Java 檔
   - STS : Eclipse 專案的主要檔案，是由 Eclipse 負責產生的，大多屬於特定電腦裡的絕對路徑，會影響到不同電腦間的設定，
     不需要 commit
-  - InterlliJ IDEA
-  - NetBeans
-  - VS code 
+  - InterlliJ IDEA : 理由同 STS 一樣 
+  - NetBeans : 理由同 STS 一樣
+  - VS code : 理由同 STS 一樣
   - 都屬於 ide 相關的設定檔，所以皆不需要 commit
   - 未 commit 的檔案 : 藍色
   - 未 加入 github 的檔案 : 紅色
@@ -128,7 +128,17 @@
 
 ## maven 主要資料夾結構
 - class path 是從 包檔後，classes 底下算起的路徑，通常表示為根目錄
-
+  ```
+  ├─ src  
+  │ ├─ main
+  │ │ ├─ java *
+  │ │ ├─ resources *           
+  │ ├─ test     
+  │ │ ├─ java * 
+  ```
+- src/main/java : 啟動類別及程式的開發目錄
+- src/main/resources : 資源檔目錄
+- src/test/java : 測試程式所在的目錄
 
 ## spring boot 包版
 - 在 terminal 輸入 mvn package 就可以進行簡單的包版
@@ -155,6 +165,17 @@
   - 在 terminal 輸入 mvn spring-boot:run -D"spring.profiles.active=prod"
     - 在 window 寫指令的時候，有"."的時候，會導致指令被切斷，所以需要 " " 將指令框起來
 
+- https 安全上的設定
+  - 跟安控有關的設定
+  - 程式完成後，會進行弱點掃描 (弱掃)，設定走 https
+    ```
+    # cookie 只能走 http
+    server.servlet.session.cookie.http-only=true
+    # cookie 必續耀能夠被加密
+    server.servlet.session.cookie.secure=true
+    
+    server.servlet.session.cookie.max-age=0
+    ```
 ## 額外補充說明
 - 在 Project 中的 Modules ，可以選擇 Language level，限制開發時，使用到多少版本以上的特性
 - console 印出 exit code 0
