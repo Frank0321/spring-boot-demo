@@ -1,4 +1,8 @@
 # Spring-boot-demo
+本次內容包含 :
+- Spring initializer 建置專案的介紹
+- pom.xml 的內容介紹
+- application.properties 的設定介紹
 
 ## Spring initializr 建置專案
 - [Spring initializr](https://start.spring.io/)
