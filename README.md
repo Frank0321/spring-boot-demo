@@ -1,8 +1,9 @@
 # Spring-boot-demo
 
 ## Spring initializr 建置專案
-- 快速建置專案的方法
 - [Spring initializr](https://start.spring.io/)
+- 快速建置專案的方法
+- 裡面各個欄位介紹如下 :
 - Project :
   - 選擇專案的管理工具
   - Maven Project (目前我們公司)
