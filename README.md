@@ -129,7 +129,13 @@
       </dependencies>
   </dependencyManagement>
   ```
-
+- 自動化監控的依賴 (Spring boot Actuator)
+  ```xml
+  <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-actuator</artifactId>
+  </dependency>
+  ```
 
 ## maven 主要資料夾結構
 - class path 是從 包檔後，classes 底下算起的路徑，通常表示為根目錄
@@ -181,6 +187,22 @@
     
     server.servlet.session.cookie.max-age=0
     ```
+    
+## h2 DB 與 Entity 介紹
+- url : http://localhost:8090/h2-console/login.jsp?jsessionid=5d51eb8bdf04ae16f86dc062b4c76b9e
+- 添加了 login.jsp?jsessionid=5d51eb8bdf04ae16f86dc062b4c76b9e
+  - jsessionid=5d51eb8bdf04ae16f86dc062b4c76b9e 表示 session，每次重啟都會更新
+- 修改 Entity 的名稱
+  - 在 Entity 的物件上，標註 @Table( name = " ") 去修改
+- 設定密碼
+  - 避免被弱點掃描掃到，可以設定在 Configurations -> Configuration -> VM options (啟動變數)
+    - -Dspring.datasource.password=sleader，需要再加上 -D
+  - 或是可以加到環境變數中 Configurations -> Configuration -> VM options (環境變數)
+    - spring.datasource.password=sleader
+- 顯示 SQL 指令
+  - 在 application.properties 輸入 : spring.jpa.show-sql=true，
+    啟動 spring 時，底下 console 會秀出 SQL 指令
+  
 ## 額外補充說明
 - 在 Project 中的 Modules ，可以選擇 Language level，限制開發時，使用到多少版本以上的特性
 - console 印出 exit code 0
