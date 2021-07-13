@@ -187,6 +187,15 @@
     
     server.servlet.session.cookie.max-age=0
     ```
+- DB 相關設定
+  - spring.datasource.driver-class-name=org.h2.Driver
+    - 設定為使用 H2 DB (有些時候可能會不只有一個DB)
+  - spring.h2.console.enabled=true
+    - 設定可以網頁上，開啟 H2 DB
+  - spring.datasource.url=jdbc:h2:mem:spring-boot-demo
+    - 固定 DB 連線的網址(url)
+  - spring.jpa.show-sql=true
+    - 啟動 spring 時，底下 console 會秀出 SQL 指令
     
 ## h2 DB 與 Entity 介紹
 - url : http://localhost:8090/h2-console/login.jsp?jsessionid=5d51eb8bdf04ae16f86dc062b4c76b9e
