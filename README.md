@@ -211,6 +211,12 @@
 - 顯示 SQL 指令
   - 在 application.properties 輸入 : spring.jpa.show-sql=true，
     啟動 spring 時，底下 console 會秀出 SQL 指令
+- 設定統一 Entity 命名規則
+  - 在 application.properties 設定 spring.jpa.hibernate.naming.physical-strategy=class名稱
+  - 新增一個 class ，並 extends SpringPhysicalNamingStrategy
+    - 建立一個 method 回傳文字
+    - 覆寫 toPhysicalTableName (table 前面需要加的前綴)
+    - 覆寫 getIdentifier (table 後面需要去掉的字，如 Entity)
   
 ## 額外補充說明
 - 在 Project 中的 Modules ，可以選擇 Language level，限制開發時，使用到多少版本以上的特性
