@@ -217,6 +217,29 @@
     - 建立一個 method 回傳文字
     - 覆寫 toPhysicalTableName (table 前面需要加的前綴)
     - 覆寫 getIdentifier (table 後面需要去掉的字，如 Entity)
+  ```java
+  public class NewTableNameRule extends SpringPhysicalNamingStrategy {
+
+    //新增開頭要使用的文字內容
+    protected String tablePrefix(){
+	return "sl_";
+    }
+
+    //table 前面需要加的前綴
+    @Override
+    public Identifier toPhysicalTableName(Identifier name, JdbcEnvironment jdbcEnvironment) {
+	Identifier identifier = super.toPhysicalTableName(name, jdbcEnvironment);
+	return new Identifier(tablePrefix() + identifier.getText(), identifier.isQuoted());
+    }
+
+    //table 後面需要去掉的 Entity
+    @Override
+    protected Identifier getIdentifier(String name, boolean quoted, JdbcEnvironment jdbcEnvironment) {
+	String identifier = name.toLowerCase(Locale.ROOT).replace("_entity", "");
+	return new Identifier(identifier, quoted);
+    }
+  }
+  ```
   
 ## 額外補充說明
 - 在 Project 中的 Modules ，可以選擇 Language level，限制開發時，使用到多少版本以上的特性
