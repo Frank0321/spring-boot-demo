@@ -157,7 +157,14 @@
 - resources 的資料夾與 Java 都會被包在 class 這個目錄底下
 - 被包在 class 底下的東西，才可以進行讀取、運行等
 
-## application.properties 相關設定
+## 專案相關設定
+- application.properties 與 application.yml
+  - 兩者皆為設定檔，通常會擇一進行編輯
+  - 大多推薦使用 .yml 進行編輯。
+    - 為樹狀結構，較為明確
+    - 較先被載入 ?!
+  - bootstrap ???
+  - [參考](https://www.itread01.com/content/1548720026.html)
 - Exception : 本身在產生 exception 的時候，不會暴露在網頁上給使用者知道
 - 如果需要顯示，則到 application.properties 進行設定
   ```
