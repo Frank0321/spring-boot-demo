@@ -204,7 +204,8 @@
   - spring.jpa.show-sql=true
     - 啟動 spring 時，底下 console 會秀出 SQL 指令
     
-## h2 DB 與 Entity 介紹
+## Entity 介紹
+### h2 DB
 - url : http://localhost:8090/h2-console/login.jsp?jsessionid=5d51eb8bdf04ae16f86dc062b4c76b9e
 - 添加了 login.jsp?jsessionid=5d51eb8bdf04ae16f86dc062b4c76b9e
   - jsessionid=5d51eb8bdf04ae16f86dc062b4c76b9e 表示 session，每次重啟都會更新
@@ -247,6 +248,17 @@
     }
   }
   ```
+### MariaDB
+- 常用指令 : 
+  - 查詢已建立的資料庫 : show databases; 
+  - 建立資料庫 : create database 資料庫名稱;
+  - 刪除資料庫 : drop database 資料庫名稱; (沒有要用一定要刪除，不然會留著)
+  - 使用某個資料庫 : use 資料庫;
+  
+- 在連到 MariaDB 的時候
+  1. 先開啟使用的資料庫 
+  2. 建立資料庫(DB)
+  3. 輸入帳號密碼
   
 ## 額外補充說明
 - 在 Project 中的 Modules ，可以選擇 Language level，限制開發時，使用到多少版本以上的特性
