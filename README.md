@@ -177,12 +177,6 @@
   #秀出 stacktrace 的訊息
   server.error.include-stacktrace=always
   ```
-- application-prod.properties : 常用來表示正式環境才要運行的設定
-  - 可以到 Configurations 裡面的 Active profile 去做設定
-    - 輸入 `prod` 即可
-  - 在 terminal 輸入 mvn spring-boot:run -D"spring.profiles.active=prod"
-    - 在 window 寫指令的時候，有"."的時候，會導致指令被切斷，所以需要 " " 將指令框起來
-
 - https 安全上的設定
   - 跟安控有關的設定
   - 程式完成後，會進行弱點掃描 (弱掃)，設定走 https
@@ -203,62 +197,91 @@
     - 固定 DB 連線的網址(url)
   - spring.jpa.show-sql=true
     - 啟動 spring 時，底下 console 會秀出 SQL 指令
-    
+  - 設定密碼
+    - 避免被弱點掃描掃到，可以設定在 Configurations -> Configuration -> VM options (啟動變數)
+      - -Dspring.datasource.password=sleader，需要再加上 -D
+    - 或是可以加到環境變數中 Configurations -> Configuration -> VM options (環境變數)
+      - spring.datasource.password=sleader
+  - 顯示 SQL 指令
+    - 在 application.properties 輸入 : spring.jpa.show-sql=true，
+      啟動 spring 時，底下 console 會秀出 SQL 指令
+  - 設定統一 Entity 命名規則
+    - 在 application.properties 設定 spring.jpa.hibernate.naming.physical-strategy=class名稱
+    - 新增一個 class ，並 extends SpringPhysicalNamingStrategy
+      - 建立一個 method 回傳文字
+      - 覆寫 toPhysicalTableName (table 前面需要加的前綴)
+      - 覆寫 getIdentifier (table 後面需要去掉的字，如 Entity)
+    ```java
+    public class NewTableNameRule extends SpringPhysicalNamingStrategy {
+  
+      //新增開頭要使用的文字內容
+      protected String tablePrefix(){
+      return "sl_";
+      }
+  
+      //table 前面需要加的前綴
+      @Override
+      public Identifier toPhysicalTableName(Identifier name, JdbcEnvironment jdbcEnvironment) {
+      Identifier identifier = super.toPhysicalTableName(name, jdbcEnvironment);
+      return new Identifier(tablePrefix() + identifier.getText(), identifier.isQuoted());
+      }
+  
+      //table 後面需要去掉的 Entity
+      @Override
+      protected Identifier getIdentifier(String name, boolean quoted, JdbcEnvironment jdbcEnvironment) {
+      String identifier = name.toLowerCase(Locale.ROOT).replace("_entity", "");
+      return new Identifier(identifier, quoted);
+      }
+    }
+    ```
+### 多個 application.properties 設定
+在測試時與正式站兩個地方會有需要不同的設定，因此可以藉由使用不同的 application.properties 進行切換
+
+- application-prod.properties : 常用來表示正式環境才要運行的設定
+  - 可以到 Configurations 裡面的 Active profile 去做設定
+    - 輸入 `prod` 即可
+  - 在 terminal 輸入 mvn spring-boot:run -D"spring.profiles.active=prod"
+    - 在 window 寫指令的時候，有"."的時候，會導致指令被切斷，所以需要 " " 將指令框起來
+
 ## Entity 介紹
-### h2 DB
+- 主要會以 H2 DB 與 MariaDB 進行介紹
+- 修改 Entity 的名稱
+  - 在 Entity 的物件上，標註 @Table( name = " ") 去修改
+### H2 DB
+H2 為虛擬資料庫，關閉後，會自動釋放資源，自動 drop 掉
+
 - url : http://localhost:8090/h2-console/login.jsp?jsessionid=5d51eb8bdf04ae16f86dc062b4c76b9e
 - 添加了 login.jsp?jsessionid=5d51eb8bdf04ae16f86dc062b4c76b9e
   - jsessionid=5d51eb8bdf04ae16f86dc062b4c76b9e 表示 session，每次重啟都會更新
-- 修改 Entity 的名稱
-  - 在 Entity 的物件上，標註 @Table( name = " ") 去修改
-- 設定密碼
-  - 避免被弱點掃描掃到，可以設定在 Configurations -> Configuration -> VM options (啟動變數)
-    - -Dspring.datasource.password=sleader，需要再加上 -D
-  - 或是可以加到環境變數中 Configurations -> Configuration -> VM options (環境變數)
-    - spring.datasource.password=sleader
-- 顯示 SQL 指令
-  - 在 application.properties 輸入 : spring.jpa.show-sql=true，
-    啟動 spring 時，底下 console 會秀出 SQL 指令
-- 設定統一 Entity 命名規則
-  - 在 application.properties 設定 spring.jpa.hibernate.naming.physical-strategy=class名稱
-  - 新增一個 class ，並 extends SpringPhysicalNamingStrategy
-    - 建立一個 method 回傳文字
-    - 覆寫 toPhysicalTableName (table 前面需要加的前綴)
-    - 覆寫 getIdentifier (table 後面需要去掉的字，如 Entity)
-  ```java
-  public class NewTableNameRule extends SpringPhysicalNamingStrategy {
-
-    //新增開頭要使用的文字內容
-    protected String tablePrefix(){
-	return "sl_";
-    }
-
-    //table 前面需要加的前綴
-    @Override
-    public Identifier toPhysicalTableName(Identifier name, JdbcEnvironment jdbcEnvironment) {
-	Identifier identifier = super.toPhysicalTableName(name, jdbcEnvironment);
-	return new Identifier(tablePrefix() + identifier.getText(), identifier.isQuoted());
-    }
-
-    //table 後面需要去掉的 Entity
-    @Override
-    protected Identifier getIdentifier(String name, boolean quoted, JdbcEnvironment jdbcEnvironment) {
-	String identifier = name.toLowerCase(Locale.ROOT).replace("_entity", "");
-	return new Identifier(identifier, quoted);
-    }
-  }
-  ```
+  
 ### MariaDB
+MariaDB 為實體資料庫，關閉後並不會因此而 drop 掉
+- 操作方式 : 使用 MySQL Client 進行操作
 - 常用指令 : 
   - 查詢已建立的資料庫 : show databases; 
   - 建立資料庫 : create database 資料庫名稱;
   - 刪除資料庫 : drop database 資料庫名稱; (沒有要用一定要刪除，不然會留著)
   - 使用某個資料庫 : use 資料庫;
+  - 查詢全部表格 : show tables;
+  - 下 SQL : 直接打 SQL (select * from table;)
+  - 刪除資料表 : drop table table_name;  
+  - 關閉資料庫 exit
+  - 注意 : 主要為輸入指令的方式，因此輸入完指令後，需要加上 ";"
+  - [參考](https://www.jinnsblog.com/2017/08/mysql-mariadb-sample.html)
   
 - 在連到 MariaDB 的時候
-  1. 先開啟使用的資料庫 
-  2. 建立資料庫(DB)
-  3. 輸入帳號密碼
+  1. 先開啟使用的資料庫，(要輸入密碼) 
+  2. 確認是否有要被連線的資料庫名稱，沒有就新建一個資料庫
+  3. 在 application-properties 進行設定
+    ```
+    #使用 mariadb 資料庫
+    spring.datasource.driver-class-name=org.mariadb.jdbc.Driver
+    # 設定連線的 url (trainingdb 為新建的 db)
+    spring.datasource.url=jdbc:mysql://localhost:3306/trainingdb
+    # 設定帳密
+    spring.datasource.username=root
+    spring.datasource.password=root
+    ```
   
 ## 額外補充說明
 - 在 Project 中的 Modules ，可以選擇 Language level，限制開發時，使用到多少版本以上的特性
