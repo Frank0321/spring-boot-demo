@@ -160,10 +160,9 @@
 ## 專案相關設定
 - application.properties 與 application.yml
   - 兩者皆為設定檔，通常會擇一進行編輯
-  - 大多推薦使用 .yml 進行編輯。
-    - 為樹狀結構，較為明確
-    - 較先被載入 ?!
-  - bootstrap ???
+  - application.properties 優先度較高
+  - application.yml 為樹狀結構
+    
   - [參考](https://www.itread01.com/content/1548720026.html)
 - Exception : 本身在產生 exception 的時候，不會暴露在網頁上給使用者知道
 - 如果需要顯示，則到 application.properties 進行設定
@@ -236,7 +235,8 @@
     ```
 ### 多個 application.properties 設定
 在測試時與正式站兩個地方會有需要不同的設定，因此可以藉由使用不同的 application.properties 進行切換
-
+- application-dev.properties : 常用來表示測試環境
+- application.properties : 主設定檔  
 - application-prod.properties : 常用來表示正式環境才要運行的設定
   - 可以到 Configurations 裡面的 Active profile 去做設定
     - 輸入 `prod` 即可
