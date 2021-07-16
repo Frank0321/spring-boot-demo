@@ -1,8 +1,14 @@
 # Spring-boot-demo
 本次內容包含 :
-- Spring initializer 建置專案的介紹
-- pom.xml 的內容介紹
-- application.properties 的設定介紹
+- Spring initializr 建置專案
+- maven 專案檔介紹
+  - pom.xml 介紹
+  - maven 主要資料夾結構
+  - 專案相關設定
+- spring boot 包版
+- Entity 介紹 (會移動到 JPA)
+- 額外補充說明
+
 
 ## Spring initializr 建置專案
 - [Spring initializr](https://start.spring.io/)
@@ -20,7 +26,7 @@
 
 - Package name : spring boot 的進入點 class 被放在哪裡
 
-## 專案檔案結構介紹
+## maven 專案檔介紹
 - 標準的 maven 專案格式，包含 pom.xml 與 src 資料夾
 - .mvn、mvnw、mvnw.cmd : 環境沒有 maven 的狀況下，可以建置專案(透過 mvnw.cmd)
 - HELP.md : spring initalizr 給予的說明，若使用其他 dependency 的話，會附上 documentation
@@ -36,7 +42,7 @@
   - 未 commit 的檔案 : 藍色
   - 未 加入 github 的檔案 : 紅色
   
-## pom.xml 介紹
+### pom.xml 介紹
 - 如果對於 maven 的 pom.xml 進行改變，皆需要執行 reload !!! 執行方式
   - 在 Actions 中，搜尋 Reload All Maven Projects
   - 點選 pom.xml 右上角的圖示
@@ -137,7 +143,7 @@
   </dependency>
   ```
 
-## maven 主要資料夾結構
+### maven 主要資料夾結構
 - class path 是從 包檔後，classes 底下算起的路徑，通常表示為根目錄
   ```
   ├─ src  
@@ -151,13 +157,7 @@
 - src/main/resources : 資源檔目錄
 - src/test/java : 測試程式所在的目錄
 
-## spring boot 包版
-- 在 terminal 輸入 mvn package 就可以進行簡單的包版
-- 會在 target 裡面產生一個 jar 檔
-- resources 的資料夾與 Java 都會被包在 class 這個目錄底下
-- 被包在 class 底下的東西，才可以進行讀取、運行等
-
-## 專案相關設定
+### 專案相關設定
 - application.properties 與 application.yml
   - 兩者皆為設定檔，通常會擇一進行編輯
   - 大多推薦使用 .yml 進行編輯。
@@ -242,6 +242,12 @@
     - 輸入 `prod` 即可
   - 在 terminal 輸入 mvn spring-boot:run -D"spring.profiles.active=prod"
     - 在 window 寫指令的時候，有"."的時候，會導致指令被切斷，所以需要 " " 將指令框起來
+
+## spring boot 包版
+- 在 terminal 輸入 mvn package 就可以進行簡單的包版
+- 會在 target 裡面產生一個 jar 檔
+- resources 的資料夾與 Java 都會被包在 class 這個目錄底下
+- 被包在 class 底下的東西，才可以進行讀取、運行等
 
 ## Entity 介紹
 - 主要會以 H2 DB 與 MariaDB 進行介紹
