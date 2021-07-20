@@ -42,6 +42,20 @@
   - 未 commit 的檔案 : 藍色
   - 未 加入 github 的檔案 : 紅色
   
+### Maven 專案結構
+```xml
+├─ pom.xml      
+├─ src            
+│ ├─ main
+│ │ ├─ java
+│ │ ├─ resources
+│ │ ├─ webapp
+│ │ │ ├─ WEB-INF*
+│ │ │ │ ├─ jsp*
+│ ├─ test
+```
+- [maven 目錄結構](https://www.itread01.com/content/1541778370.html)
+  
 ### pom.xml 介紹
 - 如果對於 maven 的 pom.xml 進行改變，皆需要執行 reload !!! 執行方式
   - 在 Actions 中，搜尋 Reload All Maven Projects
