@@ -26,6 +26,8 @@
 
 - Package name : spring boot 的進入點 class 被放在哪裡
 
+- 備註 : [使用 interlliJ 建立 maven 專案](https://www.itread01.com/content/1545844517.html)
+
 ## maven 專案檔介紹
 - 標準的 maven 專案格式，包含 pom.xml 與 src 資料夾
 - .mvn、mvnw、mvnw.cmd : 環境沒有 maven 的狀況下，可以建置專案(透過 mvnw.cmd)
