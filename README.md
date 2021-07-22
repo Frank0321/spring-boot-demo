@@ -156,6 +156,10 @@
       <artifactId>spring-boot-starter-actuator</artifactId>
   </dependency>
   ```
+- spring-boot-maven-plugin not found
+  - 一開始的時候，容易會遇到這個問題，參考解法如下 : 
+  - [中文解法](https://blog.csdn.net/wildyuhao/article/details/109721501)
+  - [stackoverflow](https://stackoverflow.com/questions/64639836/plugin-org-springframework-bootspring-boot-maven-plugin-not-found)
 
 ### maven 主要資料夾結構
 - class path 是從 包檔後，classes 底下算起的路徑，通常表示為根目錄
