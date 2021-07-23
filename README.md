@@ -253,6 +253,9 @@
       }
     }
     ```
+- 讀取配置文件中參數的方法
+  - [參考](http://www.mydlq.club/article/61/)
+    
 ### 多個 application.properties 設定
 在測試時與正式站兩個地方會有需要不同的設定，因此可以藉由使用不同的 application.properties 進行切換
 - application-dev.properties : 常用來表示測試環境
