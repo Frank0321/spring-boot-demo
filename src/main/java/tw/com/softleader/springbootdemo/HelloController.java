@@ -2,6 +2,8 @@ package tw.com.softleader.springbootdemo;
 
 import org.springframework.web.bind.annotation.*;
 
+import static org.springframework.web.bind.annotation.RequestMethod.*;
+
 @RestController
 public class HelloController {
 
@@ -20,7 +22,7 @@ public class HelloController {
         return new HelloObj("world", 2021);
     }
 
-    @RequestMapping(name = "/parm", method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "/param", method = {GET, POST})
     public HelloObj helloObj(@RequestParam String name, @RequestParam Integer number){
         return new HelloObj(name, number);
     }

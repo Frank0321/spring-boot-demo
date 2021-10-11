@@ -342,6 +342,16 @@ MariaDB 為實體資料庫，關閉後並不會因此而 drop 掉
 ```
 - 可使用 Alt + Enter ，Add on-demand static import for.... 將 {RequestMethod.GET, RequestMethod.POST} 改成 {GET, POST}
 
+### 新增 Spring 監控的細節
+- 新增 Actuator
+```xml
+<dependency>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-starter-actuator</artifactId>
+</dependency>
+```
+- 可以從 Run -> Endpoints ->Mappings 去看有哪些 方法可以使用
+
 ## 額外補充說明
 - 在 Project 中的 Modules ，可以選擇 Language level，限制開發時，使用到多少版本以上的特性
 - console 印出 exit code 0
