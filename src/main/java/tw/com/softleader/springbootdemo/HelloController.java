@@ -15,4 +15,9 @@ public class HelloController {
     public String throwEx(){
         throw new RuntimeException("=====throwEx=====");
     }
+
+    @GetMapping(value = "/obj", produces = "application/xml")
+    public HelloObj helloObj() {
+        return new HelloObj("world", 2021);
+    }
 }

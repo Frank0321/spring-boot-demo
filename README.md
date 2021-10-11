@@ -312,6 +312,24 @@ MariaDB 為實體資料庫，關閉後並不會因此而 drop 掉
     spring.datasource.password=root
     ```
 - [MariaDB 安裝](https://mariadb.org/)  
+
+### 新增回傳 xml 的內容
+- 新增依賴
+  ```xml
+  <dependency>
+      <groupId>com.fasterxml.jackson.dataformat</groupId>
+      <artifactId>jackson-dataformat-xml</artifactId>
+  </dependency>
+  ```
+- @GetMapping 新增參數
+  ```java
+  @GetMapping(value = "/obj", produces = "application/xml")
+  public HelloObj helloObj() {
+      //....
+      return new HelloObj("world", 2021);
+  }
+  ```
+
 ## 額外補充說明
 - 在 Project 中的 Modules ，可以選擇 Language level，限制開發時，使用到多少版本以上的特性
 - console 印出 exit code 0
