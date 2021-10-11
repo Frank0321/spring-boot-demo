@@ -1,7 +1,6 @@
 package tw.com.softleader.springbootdemo;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class HelloController {
@@ -19,5 +18,10 @@ public class HelloController {
     @GetMapping(value = "/obj", produces = "application/xml")
     public HelloObj helloObj() {
         return new HelloObj("world", 2021);
+    }
+
+    @RequestMapping(name = "/parm", method = {RequestMethod.GET, RequestMethod.POST})
+    public HelloObj helloObj(@RequestParam String name, @RequestParam Integer number){
+        return new HelloObj(name, number);
     }
 }

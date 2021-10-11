@@ -330,6 +330,18 @@ MariaDB 為實體資料庫，關閉後並不會因此而 drop 掉
   }
   ```
 
+### http 的 status 400與500的差異
+- 400 系列 : 錯在 suer 身上
+- 500 系列 : 錯在 service 身上
+
+### 同時使用到兩個以上的 Http 方式
+- 不能同時使用 @GetMapping、@PostMapping
+- 需要回歸到 @RequestMapping，並在 參數內使用 methods 的陣列
+```java
+@RequestMapping(name = "/parm", method = {RequestMethod.GET, RequestMethod.POST})
+```
+- 可使用 Alt + Enter ，Add on-demand static import for.... 將 {RequestMethod.GET, RequestMethod.POST} 改成 {GET, POST}
+
 ## 額外補充說明
 - 在 Project 中的 Modules ，可以選擇 Language level，限制開發時，使用到多少版本以上的特性
 - console 印出 exit code 0
