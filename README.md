@@ -16,7 +16,7 @@
 - 裡面各個欄位介紹如下 :
 - Project :
   - 選擇專案的管理工具
-  - Maven Project (目前我們公司)
+  - Maven Project
   - Gradle Project  
 - Language : 
   - 所使用的 JVM 語言，JDK 除了 Java library 之外，還需要負責啟動 class 檔，需要借助 JVM 去啟動
@@ -177,6 +177,22 @@
 - src/main/resources : 資源檔目錄
 - src/test/java : 測試程式所在的目錄
 
+### maven 專案建置的生命週期
+- maven 定義基本的三種基本的 build lifecycle 
+> - clean : 移除之前建置(build)所產生的檔案
+> - defualt : 專案程式的驗證，編譯，測試，打包，確效，存檔，安裝，佈署
+> - site : 產生專案的網站文件，例如專案資訊，測試報告等
+      
+- 而每一種lifecycle又由數個phases（階段）組成，例如default包含了下列主要的phases。
+> 1. validate（驗證） : 驗證專案所需的資訊是否正確。
+> 2. compile（編譯） : 編譯原始碼。
+> 3. test（測試） : 對編譯的程式碼進行單元測試(unit test)。
+> 4. package（打包） : 將編譯的程式碼打包成指定的檔案格式，例如jar或war。
+> 5. verify（確效） : 進行整合測試。
+> 6. install（安裝） : 將打包好的檔案安裝（存入）至本地端的儲存庫(local repository)。
+> 7. deploy（佈署） : 將打包好的檔案上傳至遠端的儲存庫(remote repository)。
+
+- [Maven 專案建置的生命週期](https://matthung0807.blogspot.com/2018/09/maven-maven-build-lifecycle.html)
 ### 專案相關設定
 - application.properties 與 application.yml
   - 兩者皆為設定檔，通常會擇一進行編輯
