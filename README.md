@@ -9,6 +9,8 @@
 - Entity 介紹 (會移動到 JPA)
 - 額外補充說明
 
+## Spring boot 啟動
+- 啟動 spring 框架時，會自動配置。將符合自動配置條件的 bean 載入 IoC 容器中
 
 ## Spring initializr 建置專案
 - [Spring initializr](https://start.spring.io/)
