@@ -29,6 +29,7 @@
 - Package name : spring boot 的進入點 class 被放在哪裡
 
 - 備註 : [使用 interlliJ 建立 maven 專案](https://www.itread01.com/content/1545844517.html)
+- 參考資料 : [Java Maven 什麼是Artifact](https://matthung0807.blogspot.com/2018/08/java-maven-artifact.html)
 
 ## maven 專案檔介紹
 - 標準的 maven 專案格式，包含 pom.xml 與 src 資料夾
@@ -77,6 +78,7 @@
   </parent>
   ```
 - 專案的身分證
+  > 每一個專案會以 groupId、artifactId、version 做為唯一的識別，又稱為 Maven Coordinates
   ```xml
   <!-- 這一個 maven 的身分證 -->
   <groupId>tw.com.softleader</groupId>
@@ -349,7 +351,7 @@ MariaDB 為實體資料庫，關閉後並不會因此而 drop 掉
   ```
 
 ### http 的 status 400與500的差異
-- 400 系列 : 錯在 suer 身上
+- 400 系列 : 錯在 user 身上
 - 500 系列 : 錯在 service 身上
 
 ### 同時使用到兩個以上的 Http 方式
