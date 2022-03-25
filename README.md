@@ -29,7 +29,9 @@
 - Package name : spring boot 的進入點 class 被放在哪裡
 
 - 備註 : [使用 interlliJ 建立 maven 專案](https://www.itread01.com/content/1545844517.html)
-- 參考資料 : [Java Maven 什麼是Artifact](https://matthung0807.blogspot.com/2018/08/java-maven-artifact.html)
+- 參考資料 : 
+ > - [Java Maven 什麼是Artifact](https://matthung0807.blogspot.com/2018/08/java-maven-artifact.html)
+ > - [initializr 官網介紹](https://www.javatpoint.com/spring-initializr)
 
 ## maven 專案檔介紹
 - 標準的 maven 專案格式，包含 pom.xml 與 src 資料夾
