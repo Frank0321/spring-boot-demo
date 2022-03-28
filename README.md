@@ -202,10 +202,25 @@
 ### 專案相關設定
 - application.properties 與 application.yml
   - 兩者皆為設定檔，通常會擇一進行編輯
-  - application.properties 優先度較高
-  - application.yml 為樹狀結構
-    
-  - [參考](https://www.itread01.com/content/1548720026.html)
+  - 如果兩者同時存在，application.yml 檔案會被優先載入，再載入 application.properties 的設定
+  >  如果 yml 和 properties 檔案都存在相同的配置，後載入的則會把先前的設定蓋掉 => 因此會以 properties 設定為主
+  - application.yml 為樹狀結構，如下 : 
+  ```yml
+  spring:
+     application:
+        name: demoservice
+     server:
+  port: 9090
+  ```
+  - application.properties 為平狀結構，如下 :
+  ```
+  server.port = 9090
+  spring.application.name = demoservice
+  ```
+     
+  - [application.yml與bootstrap.yml的區別](https://www.itread01.com/content/1548720026.html)
+  - [application.yml application.properties 優先順序](https://www.itread01.com/content/1544496318.html) 
+  - [Spring Boot - Application Properties](https://www.tutorialspoint.com/spring_boot/spring_boot_application_properties.htm)
 - Exception : 本身在產生 exception 的時候，不會暴露在網頁上給使用者知道
 - 如果需要顯示，則到 application.properties 進行設定
   ```
