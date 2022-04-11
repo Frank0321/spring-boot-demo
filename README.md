@@ -303,6 +303,11 @@
   - 在 terminal 輸入 mvn spring-boot:run -D"spring.profiles.active=prod"
     - 在 window 寫指令的時候，有"."的時候，會導致指令被切斷，所以需要 " " 將指令框起來
 
+### ComponentScan
+- 啟動 spring 時，可以將一些 class 註冊成 spring beans
+- 沒有帶入參數時，他會掃描當前的 package 與 sub-packages
+- [Spring Component Scanning](https://www.baeldung.com/spring-component-scanning)
+
 ## spring boot 包版
 - 在 terminal 輸入 mvn package 就可以進行簡單的包版
 - 會在 target 裡面產生一個 jar 檔
