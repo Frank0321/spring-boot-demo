@@ -298,21 +298,19 @@
 - application-dev.properties : 常用來表示測試環境
 - application.properties : 主設定檔  
 - application-prod.properties : 常用來表示正式環境才要運行的設定
+- interillJ :
   - 可以到 Configurations 裡面的 Active profile 去做設定
     - 輸入 `prod` 即可
   - 在 terminal 輸入 mvn spring-boot:run -D"spring.profiles.active=prod"
     - 在 window 寫指令的時候，有"."的時候，會導致指令被切斷，所以需要 " " 將指令框起來
+- eclipse : 
+  - 右鍵 -> Run As -> Run Configuration
+  - Spring Boot App -> Enviroment -> 新增 spring.profiles.active : sit  
 
 ### ComponentScan
 - 啟動 spring 時，可以將一些 class 註冊成 spring beans
 - 沒有帶入參數時，他會掃描當前的 package 與 sub-packages
 - [Spring Component Scanning](https://www.baeldung.com/spring-component-scanning)
-
-## spring boot 包版
-- 在 terminal 輸入 mvn package 就可以進行簡單的包版
-- 會在 target 裡面產生一個 jar 檔
-- resources 的資料夾與 Java 都會被包在 class 這個目錄底下
-- 被包在 class 底下的東西，才可以進行讀取、運行等
 
 ## Entity 介紹
 - 主要會以 H2 DB 與 MariaDB 進行介紹
@@ -393,6 +391,16 @@ MariaDB 為實體資料庫，關閉後並不會因此而 drop 掉
 </dependency>
 ```
 - 可以從 Run -> Endpoints ->Mappings 去看有哪些 方法可以使用
+
+## spring boot 包版
+- 在 terminal 輸入 mvn package 就可以進行簡單的包版
+- 會在 target 裡面產生一個 jar 檔
+- resources 的資料夾與 Java 都會被包在 class 這個目錄底下
+- 被包在 class 底下的東西，才可以進行讀取、運行等
+- eclipse 快速包版設定
+  - 右鍵 -> Run As -> Maven build
+  	- maven build : 使用已經設定好的 maven 方法
+  	- maven build... : 重新設定新的 maven 參數 (設定太多就去 run configurations 刪除)
 
 ## 額外補充說明
 - 在 Project 中的 Modules ，可以選擇 Language level，限制開發時，使用到多少版本以上的特性
